@@ -7,5 +7,18 @@ body {
 }
 
 img {
-    width: 100%;
+    width: 300px;
+}
+
+.editor{
+    display: flex;
+    justify-content: space-between;
+}
+
+.controller-box{
+    border: 1px solid black;
+}
+
+.hidden{
+    display: none;
 }

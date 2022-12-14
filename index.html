@@ -7,16 +7,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body onload="onInit()">
 
     <section class="gallery">
-
+        <section class="fillters"></section>
+        <div class="images-container"></div>
     </section>
 
-    <section class="editor">
-
+    <section onload="onEditorInit()" class="editor hidden">
+        <div class="canvas-container">
+            <canvas class="canvas" width="500" height="500"></canvas>
+        </div>
+        <section class="controller-box">
+            <input class="txt-input" type="text" placeholder="Enter Text" oninput="onTxtChange(this.value)">
+        </section>
     </section>
 
     <script src="js/main.js"></script>
+    <script src="js/services/gallery.services.js"></script>
+    <script src="js/controllers/gallery.controller.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/controllers/meme.controller.js"></script>
 </body>
 </html>
