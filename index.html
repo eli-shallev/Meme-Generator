@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/9d2bea8524.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -53,6 +54,12 @@
                 <option value="cursive">cursive</option>
                 <option value="Monospace">Monospace</option>
             </select>
+
+            <button class="btn btn-align-left" onclick="onAlignChange('left')">|--</button>
+            <button class="btn btn-align-center" onclick="onAlignChange('center')">-|-</button>
+            <button class="btn btn-align-right" onclick="onAlignChange('right')">--|</button>
+
+            <a href="#" class="btn btn-download" onclick="onDownload(this)" download="my-meme.jpg">Download</a>
 
         </section>
 

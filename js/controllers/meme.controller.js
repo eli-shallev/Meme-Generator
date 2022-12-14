@@ -108,6 +108,17 @@ function onFontFamilyChange(font) {
     renderMeme()
 }
 
+function onAlignChange(alignment) {
+    if (!getLines().length) return
+    alignChange(alignment)
+    renderMeme()
+}
+
+function onDownload(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
+
 
 
 function resizeCanvas() {

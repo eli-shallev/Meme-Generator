@@ -80,6 +80,24 @@ function setFontFamily(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font
 }
 
+function alignChange(alignment){
+    const currLine = gMeme.lines[gMeme.selectedLineIdx]
+    currLine.align = alignment
+    gCtx.save()
+    gCtx.font = `${currLine.size}px ${currLine.font}`
+    switch (currLine.align) {
+        case 'left':
+            currLine.pos.x = 10
+            break;
+        case 'right':
+            currLine.pos.x = gElCanvas.width-10-gCtx.measureText(currLine.txt).width
+            break;
+        case 'center':
+            currLine.pos.x = (gElCanvas.width -gCtx.measureText(currLine.txt).width)/2
+            break;
+    }
+}
+
 function _createLine() {
     let posY = 220
     if (!gMeme.lines.length) posY = 20
