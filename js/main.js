@@ -3,15 +3,14 @@
 let gElCanvas
 let gCtx
 
-function onInit(){
+function onInit() {
     renderGallery()
 
     gElCanvas = document.querySelector('.canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    gCtx.font = "48px impact";
+    document.querySelector('.fill-color').value = '#ffffff'
+    gCtx.textBaseline = "top"
     gCtx.lineWidth = 3
-    gCtx.fillStyle = 'white'
-    gCtx.strokeStyle = 'black'
 
 }

@@ -5,7 +5,7 @@ var gImgs = [
     { id: 2, url: 'img/2.jpg', keywords: ['funny', 'cat'] }
 ]
 
-function getImages(){
+function getImages() {
     return gImgs
 }
 

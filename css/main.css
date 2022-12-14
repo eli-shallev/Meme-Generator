@@ -8,17 +8,19 @@ body {
 
 img {
     width: 300px;
+    cursor: pointer;
 }
 
-.editor{
+.editor {
     display: flex;
     justify-content: space-between;
 }
 
-.controller-box{
-    border: 1px solid black;
+.controller-box {
+    border: 1px solid #000000;
 }
 
-.hidden{
+.hidden {
     display: none;
+
 }

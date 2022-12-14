@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,54 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body onload="onInit()">
 
     <section class="gallery">
+
         <section class="fillters"></section>
         <div class="images-container"></div>
+
     </section>
 
     <section onload="onEditorInit()" class="editor hidden">
+
         <div class="canvas-container">
+
             <canvas class="canvas" width="500" height="500"></canvas>
+
         </div>
+
         <section class="controller-box">
+
             <input class="txt-input" type="text" placeholder="Enter Text" oninput="onTxtChange(this.value)">
+            <button class="btn btn-line-up" onclick="onLineUp()">⬆</button>
+            <button class="btn btn-line-down" onclick="onLineDown()">⬇</button>
+            <button class="btn btn-line-switch" onclick="onLineSwitch()">🔃</button>
+            <button class="btn btn-line-add" onclick="onLineAdd()">➕</button>
+            <button class="btn btn-line-remove" onclick="onLineRemove()">❌</button>
+
+            <input type="color" class="stroke-color" onchange="onStrokeColorChange(this.value)">
+            <input type="color" class="fill-color" onchange="onFillColorChange(this.value)">
+            <button class="btn btn-match-to-palete" title="Match Line Colors To Palete"
+                onclick="onMatchToPalete()">💠</button>
+
+            <button class="btn btn btn-increase-font" onclick="onChangeFontSize('increase')">A+</button>
+            <button class="btn btn btn-decrease-font" onclick="onChangeFontSize('decrease')">A-</button>
+
+            <select class="font-family-input" onchange="onFontFamilyChange(this.value)">
+                <option value="Impact" selected="selected">Impact</option>
+                <option value="Arial">Arial</option>
+                <option value="Cambria">Cambria</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="cursive">cursive</option>
+                <option value="Monospace">Monospace</option>
+            </select>
+
         </section>
+
     </section>
 
     <script src="js/main.js"></script>
@@ -29,4 +64,5 @@
     <script src="js/services/meme.service.js"></script>
     <script src="js/controllers/meme.controller.js"></script>
 </body>
+
 </html>
