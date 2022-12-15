@@ -34,3 +34,8 @@ function setImageContaineryHeight(){
     console.log('h:', height)
     document.querySelector('.images-container').style.height = `${height}px`
 }
+
+
+function onToggleMenu(){
+    document.body.classList.toggle('menu-open')
+}

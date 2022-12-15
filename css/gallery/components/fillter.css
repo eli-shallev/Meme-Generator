@@ -3,24 +3,37 @@
     margin: 0 auto;
     padding: 30px 0;
     gap: 20px;
+    flex-wrap: wrap;
 }
-.search-container{
+
+.key-words-container {
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.search-container {
     position: relative;
-    flex-basis: 35%;
-    min-width: 300px;
+    flex-basis: 100%;
+    min-width: 100px;
 }
-.search-bar{
+
+body.menu-open .search-container{
+    z-index: -1;
+}
+
+.search-bar {
     background-color: #151515;
     border-radius: 2em;
     border: none;
     width: 100%;
     height: 50px;
-    font-size: 1.3125em ;
+    font-size: 1.3125em;
     padding-inline-start: 30px;
     color: white;
 
 }
-.btn-search{
+
+.btn-search {
     position: absolute;
     top: 12px;
     right: 20px;
@@ -29,18 +42,18 @@
 }
 
 .word-pool {
+
     flex-grow: 1;
     color: white;
     background-color: #87898d;
-    font-size: 2em;
+    font-size: 1.5em;
     border-radius: 2em;
     padding: 10px 20px;
-    max-height: 70px;
+    max-height: 50px;
     overflow: hidden;
-
 }
 
-.btn-more{
+.btn-more {
     background-image: linear-gradient(to right, #0e9ab3, #2fba74);
     border: none;
     color: white;
@@ -48,8 +61,38 @@
     border-radius: 2em;
     padding: 10px 30px;
     cursor: pointer;
+    flex-basis: 20%;
 }
 
-.btn-more:hover{
+.btn-more:hover {
     background-image: linear-gradient(to right, rgba(15, 154, 179, 0.80), rgba(47, 186, 116, 0.80));
+}
+
+
+
+
+@media (min-width: 840px) {
+
+    .fillters {
+        flex-wrap: nowrap;
+    }
+
+    .key-words-container {
+        gap: 20px;
+    }
+
+    .search-container {
+        flex-basis: 35%;
+        min-width: 300px;
+    }
+
+    .word-pool {
+        font-size: 2em;
+        max-height: 70px;
+    }
+
+    .btn-more {
+        flex-basis: none;
+    }
+
 }

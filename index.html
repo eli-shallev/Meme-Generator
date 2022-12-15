@@ -12,7 +12,8 @@
 
 <body onload="onInit()">
 
-    <header class="main-header main-layout flex align-center">
+    
+    <header class="main-header flex align-center">
 
         <div class="logo"><img src="img/logo/LOGO.png" alt=""></div>
 
@@ -24,21 +25,29 @@
             </ul>
         </nav>
 
+        <button class="menu-toggle-btn" onclick="onToggleMenu()"><i class="fa-solid fa-bars"></i></button>
+
     </header>
 
-        <section class="main-gallery main-layout">
+    <div class="main-screen" onclick="onToggleMenu()"></div>
 
-            <section class="fillters flex align-center">
-                <div class="search-container">
-                    <input class="search-bar" type="search" placeholder="Search">
-                    <img class="btn-search" src="img/search.png" alt="">
-                </div>
-                
+    <section class="main-gallery">
+
+        <section class="fillters flex align-center">
+            <div class="search-container">
+                <input class="search-bar" type="search" placeholder="Search">
+                <img class="btn-search" src="img/search.png" alt="">
+            </div>
+
+            <section class="key-words-container flex">
                 <div class="word-pool"> gfdgfdgfd gfgfdf ewre vvfg ttttt</div>
                 <button class="btn-more">More</button>
             </section>
 
-            <div class="images-container"></div>
+
+        </section>
+
+        <div class="images-container"></div>
 
 
     </section>
