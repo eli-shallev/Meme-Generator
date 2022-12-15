@@ -1,0 +1,44 @@
+.images-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 173px;
+    width: 90%;
+    gap: 30px;
+    margin: 0 auto;
+    overflow-y: scroll;
+    padding: 10px 5px;
+
+
+}
+
+.images-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.images-container::-webkit-scrollbar-button {
+    display: none;
+}
+
+.images-container::-webkit-scrollbar-track {
+    background-color: #22252c;
+    border-radius: 0.5em;
+}
+
+.images-container::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to right, #0e9ab3, #2fba74);
+    border-radius: 0.5em;
+
+  }
+
+
+.images-container img {
+    width: 200px;
+    height: 173px;
+    cursor: pointer;
+    border-radius: 0.8em;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.60);
+}
+
+.images-container img:hover {
+    box-shadow: 0 0 10px 5px #21ac91;
+}

@@ -12,14 +12,38 @@
 
 <body onload="onInit()">
 
-    <section class="gallery">
+    <header class="main-header main-layout flex align-center">
 
-        <section class="fillters"></section>
-        <div class="images-container"></div>
+        <div class="logo"><img src="img/logo/LOGO.png" alt=""></div>
+
+        <nav class="nav">
+            <ul class="clean-list flex align-center">
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+        <section class="main-gallery main-layout">
+
+            <section class="fillters flex align-center">
+                <div class="search-container">
+                    <input class="search-bar" type="search" placeholder="Search">
+                    <img class="btn-search" src="img/search.png" alt="">
+                </div>
+                
+                <div class="word-pool"> gfdgfdgfd gfgfdf ewre vvfg ttttt</div>
+                <button class="btn-more">More</button>
+            </section>
+
+            <div class="images-container"></div>
+
 
     </section>
 
-    <section onload="onEditorInit()" class="editor hidden">
+    <section class="editor hidden">
 
         <div class="canvas-container">
 

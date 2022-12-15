@@ -1,0 +1,7 @@
+@import 'components/canvas.css';
+@import 'components/conrtol-box.css';
+
+.editor {
+    display: flex;
+    justify-content: space-between;
+}

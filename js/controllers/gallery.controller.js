@@ -12,7 +12,7 @@ function onImgSelect(imgId) {
     setImg(imgId)
     renderMeme()
 
-    const elGallery = document.querySelector('.gallery')
+    const elGallery = document.querySelector('.main-gallery')
     elGallery.classList.add('hidden')
     const elEditor = document.querySelector('.editor')
     elEditor.classList.remove('hidden')
