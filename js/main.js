@@ -12,30 +12,30 @@ function onInit() {
     document.querySelector('.fill-color').value = '#ffffff'
     gCtx.textBaseline = "top"
     gCtx.lineWidth = 3
-    
+
     setGalleyHeight()
     setImageContaineryHeight()
     window.addEventListener('resize', () => {
         setGalleyHeight()
         setImageContaineryHeight()
-    
+
     })
 
 }
 
-function setGalleyHeight(){
-    let height = document.querySelector('html').clientHeight - 80 - document.querySelector('.main-header').offsetHeight
-    console.log('h:', height)
+function setGalleyHeight() {
+    const diff = document.body.offsetWidth > 600 ? 80 : 15
+    let height = document.querySelector('html').clientHeight - document.querySelector('.main-header').offsetHeight - diff
     document.querySelector('.main-gallery').style.height = `${height}px`
 }
 
-function setImageContaineryHeight(){
-    let height = document.querySelector('.main-gallery').clientHeight - 60 - document.querySelector('.fillters').offsetHeight
-    console.log('h:', height)
+function setImageContaineryHeight() {
+    const diff = document.body.offsetWidth > 600 ? 60 : 10
+    let height = document.querySelector('.main-gallery').clientHeight - document.querySelector('.fillters').offsetHeight - diff
     document.querySelector('.images-container').style.height = `${height}px`
 }
 
 
-function onToggleMenu(){
+function onToggleMenu() {
     document.body.classList.toggle('menu-open')
 }
