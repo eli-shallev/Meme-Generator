@@ -3,6 +3,8 @@ let gIsdown = false
 let gStartPos = { x: 0, y: 0 }
 let gIsTouch = false
 let gIsMarkShown = true
+let gResizeMarkerLocation
+let gIsTextResizing = false
 
 function renderMeme() {
     const elImg = new Image()
@@ -21,8 +23,9 @@ function renderMeme() {
 
             if (getSelectedLineIdx() === idx && gIsMarkShown) markLine(line)
 
-            gCtx.fillText(line.txt, line.pos.x, line.pos.y)
             gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
+            gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+
         })
     }
 }
@@ -30,37 +33,39 @@ function renderMeme() {
 function onDown(ev) {
     ev.preventDefault()
     if (ev.touches) gIsTouch = true
-    let lineIdx = findLine(ev, gIsTouch)
-    if (lineIdx === -1) {
-        gIsMarkShown = false
-        renderMeme()
-        return
-    }
-    gIsMarkShown = true
-    setSelectedLineIdx(lineIdx)
-
-    gIsdown = true
-    renderMeme()
-
     var { offsetX, offsetY } = ev
-
     if (gIsTouch) {
         const { x, y, width, height } = ev.target.getBoundingClientRect();
         var offsetX = (ev.touches[0].clientX - x) / width * ev.target.offsetWidth;
         var offsetY = (ev.touches[0].clientY - y) / height * ev.target.offsetHeight;
     }
+    let lineIdx = findLine(ev, gIsTouch)
 
+    if (isOnResizeMarker(offsetX, offsetY)) {
+        console.log('on target')
+        gIsTextResizing = true
+        lineIdx = gResizeMarkerLocation.lineIdx
+    }
+
+    if (lineIdx === -1 && !gIsTextResizing) {
+        gIsMarkShown = false
+        renderMeme()
+        return
+    }
+
+    gIsMarkShown = true
+    setSelectedLineIdx(lineIdx)
+    gIsdown = true
+    renderMeme()
     gStartPos.x = offsetX
     gStartPos.y = offsetY
-
-    document.body.style.cursor = 'grabbing'
 }
 
 function onUp(ev) {
     ev.preventDefault()
+    gIsTextResizing = false
     gIsdown = false
     gIsTouch = false
-    document.body.style.cursor = 'auto'
 }
 
 function onMove(ev) {
@@ -76,8 +81,19 @@ function onMove(ev) {
 
     const dx = offsetX - gStartPos.x
     const dy = offsetY - gStartPos.y
-    updateLinePosX(dx)
-    updateLinePosY(dy)
+
+    if (gIsTextResizing) {
+        if (dx > 0 && dy > 0) {
+            changeFontSize(1)
+        }
+        if (dx < 0 && dy < 0) {
+            changeFontSize(-1)
+        }
+    } else {
+        updateLinePosX(dx)
+        updateLinePosY(dy)
+    }
+
     gStartPos.x = offsetX
     gStartPos.y = offsetY
     renderMeme()
@@ -98,8 +114,25 @@ function markLine(line) {
     gCtx.strokeStyle = 'white'
     const width = gCtx.measureText(line.txt).width + 20
     const height = gCtx.measureText('M').width + 20
-    gCtx.strokeRect(line.pos.x - 5, line.pos.y - 45, width, height)
+    gCtx.strokeRect(line.pos.x - 5, line.pos.y - height*0.85, width, height)
+
+    gCtx.fillStyle = 'black'
+    gCtx.font = `20px impact`
+    gCtx.fillText('⨷', line.pos.x - 15 + width, line.pos.y - 40 + height)
+    gResizeMarkerLocation = {
+        x: line.pos.x - 15 + width,
+        y: line.pos.y - 40 + height,
+        width: gCtx.measureText('⨷').width + 5,
+        height: gCtx.measureText('M').width + 5,
+        lineIdx: getSelectedLineIdx()
+    }
+
     gCtx.restore()
+}
+
+function isOnResizeMarker(x, y) {
+    return (x >= gResizeMarkerLocation.x - 3 && x <= gResizeMarkerLocation.x + gResizeMarkerLocation.width - 5
+        && y >= gResizeMarkerLocation.y - 20 && y <= gResizeMarkerLocation.y + gResizeMarkerLocation.height - 15)
 }
 
 
@@ -194,13 +227,13 @@ function onDownload(elLink) {
     elLink.href = imgContent
 }
 
-function onEmojiAdd(emoji){
+function onEmojiAdd(emoji) {
     addLine(emoji)
     updateSelectedLine()
     renderMeme()
 }
 
-function onEmojiScroll(val){
+function onEmojiScroll(val) {
     emojiScroll(val)
 }
 
