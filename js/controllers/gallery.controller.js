@@ -15,9 +15,7 @@ function onImgSelect(imgId) {
     elGallery.classList.add('hidden')
     const elEditor = document.querySelector('.editor')
     elEditor.classList.remove('hidden')
-
-    setEditorHeight()
-    setCanvasContainerHeight()
+    
     resizeCanvas()
 }
 

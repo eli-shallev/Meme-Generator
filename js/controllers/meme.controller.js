@@ -1,4 +1,6 @@
 'use strict'
+let gIsdown = false
+let gStartPos = { x: 0, y: 0 }
 
 function renderMeme() {
     const elImg = new Image()
@@ -23,6 +25,41 @@ function renderMeme() {
     }
 }
 
+function onDown(ev) {
+    let lineIdx = findLine(ev)
+    if (lineIdx === -1) return
+    setSelectedLineIdx(lineIdx)
+    gIsdown = true
+    renderMeme()
+
+    const { offsetX, offsetY } = ev
+    gStartPos.x = offsetX
+    gStartPos.y = offsetY
+
+    document.body.style.cursor = 'grabbing'
+}
+
+function onUp() {
+    gIsdown = false
+    document.body.style.cursor = 'auto'
+}
+
+function onMove(ev) {
+    if (!gIsdown) return
+    const { offsetX, offsetY } = ev
+    const dx = offsetX - gStartPos.x
+    const dy = offsetY - gStartPos.y
+    updateLinePosX(dx)
+    updateLinePosY(dy)
+    gStartPos.x = offsetX
+    gStartPos.y = offsetY
+
+    renderMeme()
+}
+
+
+
+
 function onTxtChange(txt) {
     setLineTxt(txt)
     renderMeme()
@@ -34,7 +71,7 @@ function markLine(line) {
     gCtx.strokeStyle = 'white'
     const width = gCtx.measureText(line.txt).width + 20
     const height = gCtx.measureText('M').width + 20
-    gCtx.strokeRect(line.pos.x - 5, line.pos.y - 5, width, height)
+    gCtx.strokeRect(line.pos.x - 5, line.pos.y - 45, width, height)
     gCtx.restore()
 }
 
