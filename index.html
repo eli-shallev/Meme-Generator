@@ -57,7 +57,8 @@
         <div class="canvas-container">
 
             <canvas class="canvas" width="300" height="500" onmousedown="onDown(event)" onmousemove="onMove(event)"
-            onmouseup="onUp(event)" ontouchstart="onDown(event)" ontouchmove="onMove(event)" ontouchend=" onUp(event)"></canvas>
+                onmouseup="onUp(event)" ontouchstart="onDown(event)" ontouchmove="onMove(event)"
+                ontouchend="onUp(event)"></canvas>
 
         </div>
 
@@ -117,16 +118,24 @@
             </section>
 
             <section class="emojis">
-                <button class="btn-emojis-left"><i class="fa-solid fa-caret-left"></i></button>
-                <span>💖</span> <span>😂</span> <span>🌭</span> <span>💎</span><span>🎅</span><span>⛲</span>
-                <button class="btn-emojis-right"><i class="fa-solid fa-caret-right"></i></button>
+                <button class="btn-emojis-left" onclick="onEmojiScroll(-1)"><i class="fa-solid fa-caret-left"></i></button>
+                <div class="emoji-container">
+                    <span onclick="onEmojiAdd(this.innerText)">💖</span> <span
+                        onclick="onEmojiAdd(this.innerText)">😂</span>
+                    <span onclick="onEmojiAdd(this.innerText)">🌭</span> <span
+                        onclick="onEmojiAdd(this.innerText)">💎</span>
+                    <span onclick="onEmojiAdd(this.innerText)">🎅</span><span
+                        onclick="onEmojiAdd(this.innerText)">⛲</span>
+                </div>
+                <button class="btn-emojis-right" onclick="onEmojiScroll(1)"><i class="fa-solid fa-caret-right"></i></button>
             </section>
 
             <section class="advenced-btns">
 
-                <a href="#" class="btn-share" ><i class="fa-solid fa-share-nodes"></i> Share</a>
-                <a href="#" class="btn-download" onclick="onDownload(this)" download="my-meme.jpg"><i class="fa-solid fa-download"></i> Download</a>
-                <a href="#" class="btn-save" ><i class="fa-solid fa-floppy-disk"></i> Save</a>
+                <a href="#" class="btn-share"><i class="fa-solid fa-share-nodes"></i> Share</a>
+                <a href="#" class="btn-download" onclick="onDownload(this)" download="my-meme.jpg"><i
+                        class="fa-solid fa-download"></i> Download</a>
+                <a href="#" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Save</a>
 
             </section>
 

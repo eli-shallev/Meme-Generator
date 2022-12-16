@@ -1,4 +1,5 @@
 'use strict'
+let gEmojiScrollIdx = 0
 
 var gMeme = {
     selectedImgId: "",
@@ -42,7 +43,7 @@ function setImg(imgId) {
 function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
-function setSelectedLineIdx(lineIdx){
+function setSelectedLineIdx(lineIdx) {
     gMeme.selectedLineIdx = lineIdx
 }
 
@@ -51,8 +52,8 @@ function removeSelectedLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
-function addLine() {
-    gMeme.lines.push(_createLine())
+function addLine(lineTxt) {
+    gMeme.lines.push(_createLine(lineTxt))
 }
 
 function strokeColorChange(color) {
@@ -105,8 +106,14 @@ function alignChange(alignment) {
     }
 }
 
-function findLine(ev) {
-    const { offsetX, offsetY} = ev
+function findLine(ev, isTouch) {
+    var { offsetX, offsetY } = ev
+
+    if (isTouch) {
+        const { x, y, width, height } = ev.target.getBoundingClientRect();
+        var offsetX = (ev.touches[0].clientX - x) / width * ev.target.offsetWidth;
+        var offsetY = (ev.touches[0].clientY - y) / height * ev.target.offsetHeight;
+    }
 
     return gMeme.lines.findIndex(line => {
         const width = gCtx.measureText(line.txt).width + 20
@@ -118,7 +125,44 @@ function findLine(ev) {
     })
 }
 
-function _createLine() {
+function emojiScroll(val) {
+    gEmojiScrollIdx += val
+    gEmojiScrollIdx = gEmojiScrollIdx > 4 ? 0 : gEmojiScrollIdx
+    gEmojiScrollIdx = gEmojiScrollIdx < 0 ? 4 : gEmojiScrollIdx
+    let strHtml
+    switch (gEmojiScrollIdx) {
+        case 0:
+            strHtml = `<span onclick="onEmojiAdd(this.innerText)">💖</span> <span onclick="onEmojiAdd(this.innerText)">😂</span> 
+            <span onclick="onEmojiAdd(this.innerText)">🌭</span> <span onclick="onEmojiAdd(this.innerText)">💎</span>
+            <span onclick="onEmojiAdd(this.innerText)">🎅</span><span onclick="onEmojiAdd(this.innerText)">⛲</span>`
+            break;
+        case 1:
+            strHtml = `<span onclick="onEmojiAdd(this.innerText)">🛺</span> <span onclick="onEmojiAdd(this.innerText)">👨‍💻</span> 
+            <span onclick="onEmojiAdd(this.innerText)">🤴</span> <span onclick="onEmojiAdd(this.innerText)">🧨</span>
+            <span onclick="onEmojiAdd(this.innerText)">🎀</span><span onclick="onEmojiAdd(this.innerText)">😎</span>`
+            break;
+        case 2:
+            strHtml = `<span onclick="onEmojiAdd(this.innerText)">😜</span> <span onclick="onEmojiAdd(this.innerText)">👿</span> 
+            <span onclick="onEmojiAdd(this.innerText)">🙈</span> <span onclick="onEmojiAdd(this.innerText)">🍬</span>
+            <span onclick="onEmojiAdd(this.innerText)">🍇</span><span onclick="onEmojiAdd(this.innerText)">🚧</span>`
+            break;
+        case 3:
+            strHtml = `<span onclick="onEmojiAdd(this.innerText)">😍</span> <span onclick="onEmojiAdd(this.innerText)">🎺</span> 
+            <span onclick="onEmojiAdd(this.innerText)">🏀</span> <span onclick="onEmojiAdd(this.innerText)">👓</span>
+            <span onclick="onEmojiAdd(this.innerText)">🏆</span><span onclick="onEmojiAdd(this.innerText)">💪</span>`
+            break;
+        case 4:
+            strHtml = `<span onclick="onEmojiAdd(this.innerText)">👍</span> <span onclick="onEmojiAdd(this.innerText)">😴</span> 
+            <span onclick="onEmojiAdd(this.innerText)">🍕</span> <span onclick="onEmojiAdd(this.innerText)">🌙</span>
+            <span onclick="onEmojiAdd(this.innerText)">🔥</span><span onclick="onEmojiAdd(this.innerText)">👀</span>`
+            break;
+
+    }
+
+    document.querySelector('.emoji-container').innerHTML = strHtml
+}
+
+function _createLine(lineTxt = '') {
 
     let posY = gElCanvas.height / 2 + 20
     if (!gMeme.lines.length) posY = 60
@@ -128,7 +172,7 @@ function _createLine() {
     const fill = document.querySelector('.fill-color').value
     const font = document.querySelector('.font-family-input').value
     return {
-        txt: '',
+        txt: lineTxt,
         size: 48,
         align: 'left',
         font,
