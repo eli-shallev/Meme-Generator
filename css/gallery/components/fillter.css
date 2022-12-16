@@ -30,7 +30,6 @@ body.menu-open .search-container{
     font-size: 1.3125em;
     padding-inline-start: 30px;
     color: white;
-
 }
 
 .btn-search {
@@ -42,7 +41,6 @@ body.menu-open .search-container{
 }
 
 .word-pool {
-
     flex-grow: 1;
     color: white;
     background-color: #87898d;
@@ -72,7 +70,6 @@ body.menu-open .search-container{
 
 
 @media (min-width: 840px) {
-
     .fillters {
         flex-wrap: nowrap;
     }
@@ -94,5 +91,4 @@ body.menu-open .search-container{
     .btn-more {
         flex-basis: none;
     }
-
 }

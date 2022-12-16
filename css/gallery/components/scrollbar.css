@@ -1,0 +1,17 @@
+.images-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.images-container::-webkit-scrollbar-button {
+    display: none;
+}
+
+.images-container::-webkit-scrollbar-track {
+    background-color: #22252c;
+    border-radius: 0.5em;
+}
+
+.images-container::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to right, #0e9ab3, #2fba74);
+    border-radius: 0.5em;
+}

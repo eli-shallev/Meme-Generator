@@ -3,5 +3,24 @@
 
 .editor {
     display: flex;
-    justify-content: space-between;
+    width: 95vw;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+@media (min-width: 760px){
+    .editor {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 30px;
+    }
+}
+
+
+@media (min-width: 970px){
+    .editor {
+        gap: 50px;
+        width: 90vw;
+    }
 }

@@ -12,7 +12,7 @@
 
 <body onload="onInit()">
 
-    
+
     <header class="main-header flex align-center">
 
         <div class="logo"><img src="img/logo/LOGO.png" alt=""></div>
@@ -56,43 +56,78 @@
 
         <div class="canvas-container">
 
-            <canvas class="canvas" width="500" height="500"></canvas>
+            <canvas class="canvas" width="300" height="500"></canvas>
 
         </div>
 
         <section class="controller-box">
 
             <input class="txt-input" type="text" placeholder="Enter Text" oninput="onTxtChange(this.value)">
-            <button class="btn btn-line-up" onclick="onLineUp()">⬆</button>
-            <button class="btn btn-line-down" onclick="onLineDown()">⬇</button>
-            <button class="btn btn-line-switch" onclick="onLineSwitch()">🔃</button>
-            <button class="btn btn-line-add" onclick="onLineAdd()">➕</button>
-            <button class="btn btn-line-remove" onclick="onLineRemove()">❌</button>
 
-            <input type="color" class="stroke-color" onchange="onStrokeColorChange(this.value)">
-            <input type="color" class="fill-color" onchange="onFillColorChange(this.value)">
-            <button class="btn btn-match-to-palete" title="Match Line Colors To Palete"
-                onclick="onMatchToPalete()">💠</button>
+            <section class="line-controllers">
 
-            <button class="btn btn btn-increase-font" onclick="onChangeFontSize('increase')">A+</button>
-            <button class="btn btn btn-decrease-font" onclick="onChangeFontSize('decrease')">A-</button>
+                <button class="btn btn-line-up" onclick="onLineUp()"><i class="fa-solid fa-arrow-up"></i></button>
+                <button class="btn btn-line-down" onclick="onLineDown()"><i class="fa-solid fa-arrow-down"></i></button>
+                <button class="btn btn-line-switch" onclick="onLineSwitch()"><i
+                        class="fa-solid fa-arrows-rotate"></i></button>
+                <button class="btn btn-line-add" onclick="onLineAdd()"><i class="fa-solid fa-plus"></i></button>
+                <button class="btn btn-line-remove" onclick="onLineRemove()"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-match-to-palete" title="Match Line Colors To Palete"
+                    onclick="onMatchToPalete()"><i class="fa-solid fa-clone"></i></button>
 
-            <select class="font-family-input" onchange="onFontFamilyChange(this.value)">
-                <option value="Impact" selected="selected">Impact</option>
-                <option value="Arial">Arial</option>
-                <option value="Cambria">Cambria</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="cursive">cursive</option>
-                <option value="Monospace">Monospace</option>
-            </select>
+            </section>
 
-            <button class="btn btn-align-left" onclick="onAlignChange('left')">|--</button>
-            <button class="btn btn-align-center" onclick="onAlignChange('center')">-|-</button>
-            <button class="btn btn-align-right" onclick="onAlignChange('right')">--|</button>
+            <section class="font-controllers">
 
-            <a href="#" class="btn btn-download" onclick="onDownload(this)" download="my-meme.jpg">Download</a>
+                <button class="btn btn btn-increase-font" onclick="onChangeFontSize('increase')">A+</button>
+                <button class="btn btn btn-decrease-font" onclick="onChangeFontSize('decrease')">A-</button>
+
+                <button class="btn btn-align-left" onclick="onAlignChange('left')"><i
+                        class="fa-solid fa-align-left"></i></button>
+                <button class="btn btn-align-center" onclick="onAlignChange('center')"><i
+                        class="fa-solid fa-align-center"></i></button>
+                <button class="btn btn-align-right" onclick="onAlignChange('right')"><i
+                        class="fa-solid fa-align-right"></i></button>
+
+                <section class="font-family-container">
+                    <i class="fa-solid fa-caret-down"></i>
+                    <select class="font-family-input" onchange="onFontFamilyChange(this.value)">
+                        <option value="Impact" selected="selected">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Cambria">Cambria</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="cursive">cursive</option>
+                        <option value="Monospace">Monospace</option>
+                    </select>
+                </section>
+
+                <label class="stroke-container">
+                    <input type="color" class="stroke-color" onchange="onStrokeColorChange(this.value)">
+                    <i class="fa-solid fa-pencil"></i>
+                </label>
+
+                <label class="fill-container">
+                    <input type="color" class="fill-color" onchange="onFillColorChange(this.value)">
+                    <i class="fa-solid fa-palette"></i>
+                </label>
+
+            </section>
+
+            <section class="emojis">
+                <button class="btn-emojis-left"><i class="fa-solid fa-caret-left"></i></button>
+                <span>💖</span> <span>😂</span> <span>🌭</span> <span>💎</span><span>🎅</span><span>⛲</span>
+                <button class="btn-emojis-right"><i class="fa-solid fa-caret-right"></i></button>
+            </section>
+
+            <section class="advenced-btns">
+
+                <a href="#" class="btn-share" ><i class="fa-solid fa-share-nodes"></i> Share</a>
+                <a href="#" class="btn-download" onclick="onDownload(this)" download="my-meme.jpg"><i class="fa-solid fa-download"></i> Download</a>
+                <a href="#" class="btn-save" ><i class="fa-solid fa-floppy-disk"></i> Save</a>
+
+            </section>
 
         </section>
 

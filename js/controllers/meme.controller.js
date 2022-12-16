@@ -6,7 +6,7 @@ function renderMeme() {
     elImg.src = selectedImg.url
 
     elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.clientWidth, gElCanvas.clientHeight)
 
         if (!getLines().length) return
 
@@ -123,8 +123,11 @@ function onDownload(elLink) {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    console.log(elContainer)
+    console.log(elContainer.clientWidth)
     console.log(gElCanvas)
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.style.height
+    gElCanvas.width = elContainer.clientWidth
+    gElCanvas.height = elContainer.clientHeight
+
+    console.log(gElCanvas)
+    renderMeme()
 }

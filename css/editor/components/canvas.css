@@ -1,0 +1,13 @@
+.canvas-container{
+    border-radius: 2em;
+    margin-top: 10px;
+}
+
+@media (min-width: 760px){
+    .canvas-container{
+        margin-top: 0;
+        width: 40vw;
+        height: 100%;
+        /* max-width: 500px; */
+    }
+}

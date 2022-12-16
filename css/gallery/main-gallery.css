@@ -1,5 +1,6 @@
 @import 'components/fillter.css';
 @import 'components/image-container.css';
+@import 'components/scrollbar.css';
 
 .main-gallery {
     background-color: #383b42;
