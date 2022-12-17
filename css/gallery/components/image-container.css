@@ -20,6 +20,23 @@
     box-shadow: 0 0 10px 5px #21ac91;
 }
 
+.img-uploader {
+    background-color: #24262b;
+    width: 110px;
+    color: white;
+    border-radius: 1em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.img-uploader:hover {
+    box-shadow: 0 0 10px 5px #21ac91;
+}
+
 @media (max-width: 460px) {
     .images-container>*:nth-child(even) {
         justify-self: baseline;
@@ -45,9 +62,11 @@
         justify-items: baseline;
     }
 
-    .images-container img {
+    .images-container img,
+    .img-uploader {
         width: 140px;
         height: 121px;
+        font-size: 1.5em;
     }
 }
 
@@ -58,8 +77,10 @@
         gap: 30px;
     }
 
-    .images-container img {
+    .images-container img,
+    .img-uploader {
         width: 200px;
         height: 173px;
+        font-size: 1.5em;
     }
 }

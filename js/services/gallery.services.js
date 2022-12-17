@@ -25,3 +25,13 @@ function getImages() {
     return gImgs
 }
 
+function addImage(img){
+    const newImage = {
+        id: gImgs.length+1,
+        url: img.src,
+        keywords:[]
+    }
+    gImgs.push(newImage)
+    return newImage.id
+}
+
