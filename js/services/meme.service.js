@@ -1,10 +1,14 @@
 'use strict'
 let gEmojiScrollIdx = 0
-
+var rndStrings = ['hello', 'funny', 'friend', 'on', 'with', 'bread' , 'palying' , 'today', 'movies', 'when', 'belly', 'ball', 'worm', 'clear', 'sunny']
 var gMeme = {
     selectedImgId: "",
     selectedLineIdx: 0,
     lines: []
+}
+
+function getRndStrings(){
+    return rndStrings
 }
 
 function resetLines() {
