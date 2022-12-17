@@ -1,13 +1,13 @@
 'use strict'
 let gEmojiScrollIdx = 0
-var rndStrings = ['hello', 'funny', 'friend', 'on', 'with', 'bread' , 'palying' , 'today', 'movies', 'when', 'belly', 'ball', 'worm', 'clear', 'sunny']
+var rndStrings = ['hello', 'funny', 'friend', 'on', 'with', 'bread', 'palying', 'today', 'movies', 'when', 'belly', 'ball', 'worm', 'clear', 'sunny']
 var gMeme = {
     selectedImgId: "",
     selectedLineIdx: 0,
     lines: []
 }
 
-function getRndStrings(){
+function getRndStrings() {
     return rndStrings
 }
 
@@ -15,6 +15,7 @@ function resetLines() {
     gMeme.selectedLineIdx = 0
     gMeme.lines = []
 }
+
 function setMeme(meme) {
     gMeme = JSON.parse(JSON.stringify(meme))
 }
@@ -47,6 +48,7 @@ function setImg(imgId) {
 function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
+
 function setSelectedLineIdx(lineIdx) {
     gMeme.selectedLineIdx = lineIdx
 }
@@ -71,7 +73,6 @@ function fillColorChange(color) {
 function updateSelectedLine() {
     gMeme.selectedLineIdx += 1
     gMeme.selectedLineIdx = gMeme.selectedLineIdx >= gMeme.lines.length ? 0 : gMeme.selectedLineIdx
-
 }
 
 function updateLinePosY(diff) {
@@ -81,7 +82,6 @@ function updateLinePosY(diff) {
 function updateLinePosX(diff) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x += diff
 }
-
 
 function changeFontSize(diff) {
     gMeme.lines[gMeme.selectedLineIdx].size += diff
@@ -160,14 +160,12 @@ function emojiScroll(val) {
             <span onclick="onEmojiAdd(this.innerText)">🍕</span> <span onclick="onEmojiAdd(this.innerText)">🌙</span>
             <span onclick="onEmojiAdd(this.innerText)">🔥</span><span onclick="onEmojiAdd(this.innerText)">👀</span>`
             break;
-
     }
 
     document.querySelector('.emoji-container').innerHTML = strHtml
 }
 
 function _createLine(lineTxt = '') {
-
     let posY = gElCanvas.height / 2 + 20
     if (!gMeme.lines.length) posY = 60
     if (gMeme.lines.length === 1) posY = gElCanvas.height - 20

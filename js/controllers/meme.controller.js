@@ -6,13 +6,14 @@ let gIsMarkShown = true
 let gResizeMarkerLocation
 let gIsTextResizing = false
 
-
 function renderMeme() {
     const elImg = new Image()
     let selectedImg = getImages().find(img => img.id === getselectedImgId())
     elImg.src = selectedImg.url
-
     elImg.onload = () => {
+
+        setCanvasHeight(elImg)
+
         gCtx.drawImage(elImg, 0, 0, gElCanvas.clientWidth, gElCanvas.clientHeight)
 
         if (!getLines().length) return
@@ -26,9 +27,16 @@ function renderMeme() {
 
             gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
             gCtx.fillText(line.txt, line.pos.x, line.pos.y)
-
         })
     }
+}
+
+function setCanvasHeight(elImg) {
+    const containerWidth = document.querySelector('.canvas-container').clientWidth
+    const imgWidth = elImg.width
+    const imgheight = elImg.height
+    const containerheight = (imgheight * containerWidth) / imgWidth
+    document.querySelector('.canvas-container').style.height = `${containerheight}px`
 }
 
 function onShare() {
@@ -104,15 +112,11 @@ function onMove(ev) {
     renderMeme()
 }
 
-
-
-
 function onTxtChange(txt) {
     gIsMarkShown = true
     setLineTxt(txt)
     renderMeme()
 }
-
 
 function markLine(line) {
     gCtx.save()
@@ -121,14 +125,16 @@ function markLine(line) {
     const height = gCtx.measureText('M').width + 20
     gCtx.strokeRect(line.pos.x - 5, line.pos.y - height * 0.85, width, height)
 
-    gCtx.fillStyle = 'black'
-    gCtx.font = `20px impact`
-    gCtx.fillText('⨷', line.pos.x - 15 + width, line.pos.y - 40 + height)
+    gCtx.beginPath()
+    gCtx.lineWidth = '6'
+    gCtx.strokeStyle = 'black'
+    gCtx.fillStyle = 'white'
+    gCtx.arc(line.pos.x - 5 + width, line.pos.y - height * 0.85 + height, 8, 0, 2 * Math.PI)
+    gCtx.stroke()
+    gCtx.fill()
     gResizeMarkerLocation = {
-        x: line.pos.x - 15 + width,
-        y: line.pos.y - 40 + height,
-        width: gCtx.measureText('⨷').width + 5,
-        height: gCtx.measureText('M').width + 5,
+        x: line.pos.x - 5 + width,
+        y: line.pos.y - height * 0.85 + height,
         lineIdx: getSelectedLineIdx()
     }
 
@@ -136,10 +142,9 @@ function markLine(line) {
 }
 
 function isOnResizeMarker(x, y) {
-    return (x >= gResizeMarkerLocation.x - 3 && x <= gResizeMarkerLocation.x + gResizeMarkerLocation.width - 5
-        && y >= gResizeMarkerLocation.y - 20 && y <= gResizeMarkerLocation.y + gResizeMarkerLocation.height - 15)
+    return (x >= gResizeMarkerLocation.x - 8 && x <= gResizeMarkerLocation.x + 8 &&
+        y >= gResizeMarkerLocation.y - 8 && y <= gResizeMarkerLocation.y + 8)
 }
-
 
 function onLineAdd() {
     gIsMarkShown = true
@@ -183,7 +188,6 @@ function onStrokeColorChange(color) {
     gIsMarkShown = true
     strokeColorChange(color)
     renderMeme()
-
 }
 
 function onFillColorChange(color) {
@@ -191,7 +195,6 @@ function onFillColorChange(color) {
     gIsMarkShown = true
     fillColorChange(color)
     renderMeme()
-
 }
 
 function onMatchToPalete() {
@@ -202,7 +205,6 @@ function onMatchToPalete() {
     fillColorChange(fillColor)
     strokeColorChange(strokeColor)
     renderMeme()
-
 }
 
 function onChangeFontSize(val) {
@@ -244,7 +246,6 @@ function onEmojiScroll(val) {
 
 function onFacebookShare() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
-
     function onSuccess(uploadedImgUrl) {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
@@ -274,11 +275,7 @@ async function onWebShare() {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    console.log(elContainer.clientWidth)
-    console.log(gElCanvas)
     gElCanvas.width = elContainer.clientWidth
     gElCanvas.height = elContainer.clientHeight
-
-    console.log(gElCanvas)
     renderMeme()
 }

@@ -54,7 +54,6 @@ body {
     pointer-events: none;
     width: 100vw-200px;
     opacity: 0;
-
     transition: opacity .6s;
 }
 

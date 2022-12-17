@@ -5,6 +5,7 @@ let gCtx
 
 function onInit() {
     renderGallery()
+    renderWordPool()
     gElCanvas = document.querySelector('.canvas')
     gCtx = gElCanvas.getContext('2d')
 
@@ -16,11 +17,8 @@ function onInit() {
     setImageContaineryHeight()
 
     window.addEventListener('resize', (event) => {
-        console.log(event)
         setGalleyHeight()
         setImageContaineryHeight()
-
-
     })
 }
 
@@ -35,7 +33,6 @@ function setImageContaineryHeight() {
     let height = document.querySelector('.main-gallery').clientHeight - document.querySelector('.fillters').offsetHeight - diff
     document.querySelector('.images-container').style.height = `${height}px`
 }
-
 
 function onToggleMenu() {
     document.body.classList.toggle('menu-open')

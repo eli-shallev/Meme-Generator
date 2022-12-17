@@ -1,6 +1,5 @@
 .canvas-container{
     border-radius: 2em;
-    background-color: aquamarine;
     height: 300px;
     width: 300px;
     margin: 0 auto;
@@ -12,7 +11,7 @@ canvas{
     cursor: pointer;
 }
 
-@media (min-width: 760px){
+@media (min-width: 900px){
     .canvas-container{
         margin-top: 0;
         width: 500px;

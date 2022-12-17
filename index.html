@@ -6,16 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
     <script src="https://kit.fontawesome.com/9d2bea8524.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body onload="onInit()">
-
 
     <header class="main-header flex align-center">
 
@@ -39,7 +35,8 @@
 
         <section class="fillters flex align-center">
             <div class="search-container">
-                <input class="search-bar" type="search" list="search-options" oninput="onSearch(this.value)" placeholder="Search">
+                <input class="search-bar" type="search" list="search-options" oninput="onSearch(this.value)"
+                    placeholder="Search">
                 <img class="btn-search" src="img/search.png" alt="">
 
                 <datalist id="search-options">
@@ -57,15 +54,26 @@
             </div>
 
             <section class="key-words-container flex">
-                <div class="word-pool"> gfdgfdgfd gfgfdf ewre vvfg ttttt</div>
-                <button class="btn-more">More</button>
+                <div class="word-pool">
+                    <span id="funny" onclick="onWordClick(this.innerText)">funny</span>
+                    <span id="cat" onclick="onWordClick(this.innerText)">cat</span>
+                    <span id="cute" onclick="onWordClick(this.innerText)">cute</span>
+                    <span id="kids" onclick="onWordClick(this.innerText)">kids</span>
+                    <span id="politics" onclick="onWordClick(this.innerText)">politics</span>
+                    <span id="tv" onclick="onWordClick(this.innerText)">tv</span>
+                    <span id="celeb" onclick="onWordClick(this.innerText)">celeb</span>
+                    <span id="dog" onclick="onWordClick(this.innerText)">dog</span>
+                    <span id="success" onclick="onWordClick(this.innerText)">success</span>
+                    <span id="classics" onclick="onWordClick(this.innerText)">classics</span>
+                    <span id="german" onclick="onWordClick(this.innerText)">german</span>
+                    <button class="btn-less" onclick="Onless()">less</button>
+                </div>
+                <button class="btn-more" onclick="onMore()">More</button>
             </section>
-
 
         </section>
 
         <div class="images-container"></div>
-
 
     </section>
 
@@ -171,7 +179,6 @@
     </section>
 
     <section class="memes-container hidden"></section>
-
 
     <script src="js/services/upload.service.js"></script>
     <script src="js/services/storage.services.js"></script>

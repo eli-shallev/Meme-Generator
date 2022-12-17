@@ -22,6 +22,34 @@ function onGoToGallery() {
     elMemes.classList.add('hidden')
 }
 
+function onMore() {
+    const elPool = document.querySelector('.word-pool')
+    elPool.style.overflow = 'visible'
+    elPool.style.height = 'fit-content'
+    document.querySelector('.btn-more').classList.add('hidden')
+}
+
+function Onless() {
+    const elPool = document.querySelector('.word-pool')
+    elPool.style.overflow = 'hidden'
+    elPool.style.height = '60px'
+    document.querySelector('.btn-more').classList.remove('hidden')
+}
+
+function onWordClick(key) {
+    updatekeywordsMap(key)
+    document.querySelector('.search-bar').value = key
+    onSearch(key)
+}
+
+function renderWordPool() {
+    const keyWordsMap = getKeyWordsMap()
+    keyWordsMap.forEach(keyword => {
+        const key = Object.keys(keyword)[0]
+        document.getElementById(key).style.fontSize = `${24 + (keyword[key] * 2)}px`
+    })
+}
+
 function onImgSelect(imgId) {
     setImg(imgId)
     resetLines()
@@ -37,7 +65,7 @@ function onUploadImg(ev) {
     loadImageFromInput(ev, onImageInput)
 }
 
-function onSearch(fillter){
+function onSearch(fillter) {
     setfillter(fillter)
     renderGallery()
 }
@@ -93,12 +121,11 @@ function onRandomMeme() {
     elEditor.classList.remove('hidden')
 
     resizeCanvas()
-
 }
 
 function randomRgba() {
     var s = 255;
-    return 'rgba(' + Math.round(Math.random() * s) + ',' + Math.round(Math.random() * s) + ',' + Math.round(Math.random() * s)  + ')';
+    return 'rgba(' + Math.round(Math.random() * s) + ',' + Math.round(Math.random() * s) + ',' + Math.round(Math.random() * s) + ')';
 }
 
 function getRandomIntInclusive(min, max) {

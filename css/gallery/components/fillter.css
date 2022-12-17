@@ -4,6 +4,7 @@
     padding: 30px 0;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .key-words-container {
@@ -17,7 +18,7 @@
     min-width: 100px;
 }
 
-body.menu-open .search-container{
+body.menu-open .search-container {
     z-index: -1;
 }
 
@@ -40,14 +41,18 @@ body.menu-open .search-container{
     cursor: pointer;
 }
 
+.word-pool span {
+    cursor: pointer;
+}
+
 .word-pool {
     flex-grow: 1;
     color: white;
     background-color: #87898d;
     font-size: 1.5em;
     border-radius: 2em;
-    padding: 10px 20px;
-    max-height: 50px;
+    padding-left: 30px;
+    height: 50px;
     overflow: hidden;
 }
 
@@ -62,12 +67,19 @@ body.menu-open .search-container{
     flex-basis: 20%;
 }
 
+.btn-less {
+    background-image: linear-gradient(to right, #0e9ab3, #2fba74);
+    border: none;
+    color: white;
+    font-size: 0.8em;
+    border-radius: 2em;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
 .btn-more:hover {
     background-image: linear-gradient(to right, rgba(15, 154, 179, 0.80), rgba(47, 186, 116, 0.80));
 }
-
-
-
 
 @media (min-width: 840px) {
     .fillters {
@@ -85,7 +97,7 @@ body.menu-open .search-container{
 
     .word-pool {
         font-size: 2em;
-        max-height: 70px;
+        height: 60px;
     }
 
     .btn-more {

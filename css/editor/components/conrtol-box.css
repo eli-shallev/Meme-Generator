@@ -90,7 +90,6 @@
     background-color: #19a59f;
     border-radius: 1em;
     place-content: center;
-
 }
 
 .font-controllers>*:not(:nth-child(6)) {
@@ -224,12 +223,11 @@
     width: 100%;
     justify-content: flex-end;
     max-height: 0;
-
     overflow: hidden;
     transition: max-height 0.6s, box-shadow 0.6s;
 }
 
-.sharing-options a{
+.sharing-options a {
     color: white;
     text-decoration: none;
     font-size: 1em;
@@ -260,8 +258,8 @@
     box-shadow: 1px 6px 0 #308940, inset 0 5px 0 #54e76f;
 }
 
-@media (min-width: 760px){
-    .controller-box{
+@media (min-width: 900px) {
+    .controller-box {
         max-height: 1000px;
     }
 
@@ -275,7 +273,7 @@
     }
 }
 
-@media (min-width: 970px) {
+@media (min-width: 1040px) {
     .controller-box {
         padding: 20px 30px;
     }
@@ -292,7 +290,7 @@
         padding: 15px 15px;
     }
 
-    .font-family-input{
+    .font-family-input {
         height: 55px;
         max-width: 185px;
     }
@@ -307,16 +305,7 @@
     }
 }
 
-
-
-
-
-
-
-
-
 @media (min-width: 1100px) {
-
     .controller-box {
         gap: 20px;
         padding: 30px 40px;
@@ -340,4 +329,3 @@
         right: 10px;
     }
 }
-

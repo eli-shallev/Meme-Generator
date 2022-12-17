@@ -40,7 +40,6 @@
 
     .images-container>*:nth-child(odd) {
         justify-self: end;
-
     }
 }
 

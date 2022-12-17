@@ -9,7 +9,7 @@
     gap: 10px;
 }
 
-@media (min-width: 760px){
+@media (min-width: 900px){
     .editor {
         flex-direction: row;
         justify-content: space-between;
@@ -18,7 +18,7 @@
 }
 
 
-@media (min-width: 970px){
+@media (min-width: 1050px){
     .editor {
         gap: 50px;
         width: 90vw;
