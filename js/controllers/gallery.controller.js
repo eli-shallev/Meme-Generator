@@ -1,11 +1,13 @@
 'use strict'
 
 function renderGallery() {
+
+    const images = getImagesForDisplay()
     const elContainer = document.querySelector('.images-container')
     let strHtml = '<label class ="img-uploader" >Upload your own image!\
                     <input type="file" class="file-input hidden" name="image" onchange="onUploadImg(event)" /></label>'
     strHtml += '<label class ="random-meme" onclick="onRandomMeme()">Im flexible, surprise me!</label>'
-    strHtml += getImages().map(img => {
+    strHtml += images.map(img => {
         return `<img src="${img.url}" onclick = "onImgSelect(${img.id})" >`
     }).join('')
     elContainer.innerHTML = strHtml
@@ -33,6 +35,11 @@ function onImgSelect(imgId) {
 
 function onUploadImg(ev) {
     loadImageFromInput(ev, onImageInput)
+}
+
+function onSearch(fillter){
+    setfillter(fillter)
+    renderGallery()
 }
 
 function onRandomMeme() {

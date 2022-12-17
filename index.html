@@ -39,8 +39,21 @@
 
         <section class="fillters flex align-center">
             <div class="search-container">
-                <input class="search-bar" type="search" placeholder="Search">
+                <input class="search-bar" type="search" list="search-options" oninput="onSearch(this.value)" placeholder="Search">
                 <img class="btn-search" src="img/search.png" alt="">
+
+                <datalist id="search-options">
+                    <option value="funny"></option>
+                    <option value="cat"></option>
+                    <option value="cute"></option>
+                    <option value="kids"></option>
+                    <option value="politics"></option>
+                    <option value="tv"></option>
+                    <option value="celeb"></option>
+                    <option value="dog"></option>
+                    <option value="success"></option>
+                    <option value="classics"></option>
+                </datalist>
             </div>
 
             <section class="key-words-container flex">
@@ -139,11 +152,11 @@
             <section class="advenced-btns">
 
                 <label class="btn-share" onclick="onShare()">
-                        <i class="fa-solid fa-share-nodes"></i> Share
-                            <ul class="sharing-options clean-list">
-                                <li><a href="#" onclick="onFacebookShare()">Via Facebook</a></li>
-                                <li><a href="#" onclick="onWebShare()">More Options</a></li>
-                            </ul>
+                    <i class="fa-solid fa-share-nodes"></i> Share
+                    <ul class="sharing-options clean-list">
+                        <li><a href="#" onclick="onFacebookShare()">Via Facebook</a></li>
+                        <li><a href="#" onclick="onWebShare()">More Options</a></li>
+                    </ul>
                 </label>
 
                 <a href="#" class="btn-download" onclick="onDownload(this)" download="my-meme.jpg"><i
