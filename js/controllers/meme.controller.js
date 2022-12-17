@@ -30,6 +30,10 @@ function renderMeme() {
     }
 }
 
+function onShare() {
+    document.querySelector('.sharing-options').classList.toggle('options-open')
+}
+
 function onDown(ev) {
     ev.preventDefault()
     if (ev.touches) gIsTouch = true
@@ -114,7 +118,7 @@ function markLine(line) {
     gCtx.strokeStyle = 'white'
     const width = gCtx.measureText(line.txt).width + 20
     const height = gCtx.measureText('M').width + 20
-    gCtx.strokeRect(line.pos.x - 5, line.pos.y - height*0.85, width, height)
+    gCtx.strokeRect(line.pos.x - 5, line.pos.y - height * 0.85, width, height)
 
     gCtx.fillStyle = 'black'
     gCtx.font = `20px impact`
@@ -235,6 +239,36 @@ function onEmojiAdd(emoji) {
 
 function onEmojiScroll(val) {
     emojiScroll(val)
+}
+
+function onFackbookShare() {
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+
+    doUploadImg(imgDataUrl, onSuccess)
+}
+
+async function onWebShare() {
+    const dataUrl = gElCanvas.toDataURL()
+    const blob = await (await fetch(dataUrl)).blob()
+    const filesArray = [
+      new File(
+        [blob],
+        'Meme.jpg',
+        {
+          type: blob.type,
+          lastModified: new Date().getTime()
+        }
+      )
+    ]
+    const shareData = {
+      files: filesArray,
+    }
+    navigator.share(shareData)
 }
 
 function resizeCanvas() {

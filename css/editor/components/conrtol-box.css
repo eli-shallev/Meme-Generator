@@ -208,6 +208,46 @@
 .btn-share {
     background-color: #1e7cd3;
     box-shadow: 1px 6px 0 #165c9c, inset 0 5px 0 #57b2e8;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+
+.sharing-options {
+    position: absolute;
+    bottom: 60px;
+    border-radius: 1em;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    background: #0396f1f7;
+    width: 100%;
+    justify-content: flex-end;
+    max-height: 0;
+
+    overflow: hidden;
+    transition: max-height 0.6s, box-shadow 0.6s;
+}
+
+.sharing-options a{
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.sharing-options.options-open {
+    max-height: 100vh;
+}
+
+.sharing-options li:hover {
+    background: rgb(3, 3, 241);
+}
+
+.sharing-options li {
+    padding: 1em 5px;
+    border-bottom: 1px solid rgb(0, 72, 117);
+    width: 100%;
+    text-align: center;
 }
 
 .btn-download {
@@ -300,3 +340,4 @@
         right: 10px;
     }
 }
+
