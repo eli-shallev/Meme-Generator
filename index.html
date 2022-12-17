@@ -23,8 +23,8 @@
 
         <nav class="nav">
             <ul class="clean-list flex align-center">
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Memes</a></li>
+                <li><a href="#" onclick="onGoToGallery()">Gallery</a></li>
+                <li><a href="#" onclick="onGoToMemes()">Memes</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </nav>
@@ -141,26 +141,34 @@
                 <label class="btn-share" onclick="onShare()">
                         <i class="fa-solid fa-share-nodes"></i> Share
                             <ul class="sharing-options clean-list">
-                                <li><a href="#" onclick="onFackbookShare()">Via Fackbook</a></li>
+                                <li><a href="#" onclick="onFacebookShare()">Via Facebook</a></li>
                                 <li><a href="#" onclick="onWebShare()">More Options</a></li>
                             </ul>
                 </label>
 
                 <a href="#" class="btn-download" onclick="onDownload(this)" download="my-meme.jpg"><i
                         class="fa-solid fa-download"></i> Download</a>
-                <a href="#" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Save</a>
+
+                <a href="#" class="btn-save" onclick="onSave()"><i class="fa-solid fa-floppy-disk"></i> Save</a>
 
             </section>
 
         </section>
 
     </section>
-    <script src="js/upload.service.js"></script>
+
+    <section class="memes-container hidden"></section>
+
+
+    <script src="js/services/upload.service.js"></script>
+    <script src="js/services/storage.services.js"></script>
     <script src="js/main.js"></script>
     <script src="js/services/gallery.services.js"></script>
     <script src="js/controllers/gallery.controller.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/controllers/meme.controller.js"></script>
+    <script src="js/services/saved.meme.services.js"></script>
+    <script src="js/controllers/saved.meme.controller.js"></script>
 </body>
 
 </html>

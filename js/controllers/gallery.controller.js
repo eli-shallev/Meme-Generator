@@ -10,9 +10,18 @@ function renderGallery() {
     elContainer.innerHTML = strHtml
 }
 
+function onGoToGallery(){
+    const elGallery = document.querySelector('.main-gallery')
+    elGallery.classList.remove('hidden')
+    const elEditor = document.querySelector('.editor')
+    elEditor.classList.add('hidden')
+    const elMemes = document.querySelector('.memes-container')
+    elMemes.classList.add('hidden')
+}
+
 function onImgSelect(imgId) {
     setImg(imgId)
-
+    resetLines()
     const elGallery = document.querySelector('.main-gallery')
     elGallery.classList.add('hidden')
     const elEditor = document.querySelector('.editor')

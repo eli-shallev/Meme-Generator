@@ -6,9 +6,10 @@ let gIsMarkShown = true
 let gResizeMarkerLocation
 let gIsTextResizing = false
 
+
 function renderMeme() {
     const elImg = new Image()
-    const selectedImg = getImages().find(img => img.id === getselectedImgId())
+    let selectedImg = getImages().find(img => img.id === getselectedImgId())
     elImg.src = selectedImg.url
 
     elImg.onload = () => {
@@ -241,7 +242,7 @@ function onEmojiScroll(val) {
     emojiScroll(val)
 }
 
-function onFackbookShare() {
+function onFacebookShare() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
 
     function onSuccess(uploadedImgUrl) {
@@ -256,17 +257,17 @@ async function onWebShare() {
     const dataUrl = gElCanvas.toDataURL()
     const blob = await (await fetch(dataUrl)).blob()
     const filesArray = [
-      new File(
-        [blob],
-        'Meme.jpg',
-        {
-          type: blob.type,
-          lastModified: new Date().getTime()
-        }
-      )
+        new File(
+            [blob],
+            'Meme.jpg',
+            {
+                type: blob.type,
+                lastModified: new Date().getTime()
+            }
+        )
     ]
     const shareData = {
-      files: filesArray,
+        files: filesArray,
     }
     navigator.share(shareData)
 }

@@ -4,15 +4,15 @@ let gEmojiScrollIdx = 0
 var gMeme = {
     selectedImgId: "",
     selectedLineIdx: 0,
-    lines: [
-        // {
-        //     txt: '',
-        //     size: 20,
-        //     align: 'left',
-        //     color: 'red',
-        //     pos: { x: 10, y: 50 }
-        // }
-    ]
+    lines: []
+}
+
+function resetLines() {
+    gMeme.selectedLineIdx = 0
+    gMeme.lines = []
+}
+function setMeme(meme) {
+    gMeme = JSON.parse(JSON.stringify(meme))
 }
 
 function getMeme() {
