@@ -106,7 +106,9 @@ function onRandomMeme() {
                 align: align,
                 font: 'Impact',
                 color: { stroke: randomRgba(), fill: randomRgba() },
-                pos: { x: 10, y: posY }
+                pos: { x: 10, y: posY },
+                isRotated: false,
+                angle: 0,
             }
             isLineWidth = checkLineSize(newLine)
         }

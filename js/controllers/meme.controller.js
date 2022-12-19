@@ -5,6 +5,8 @@ let gIsTouch = false
 let gIsMarkShown = true
 let gResizeMarkerLocation
 let gIsTextResizing = false
+let gIsTextRotating = false
+let gRotateMarkerLocation
 
 function renderMeme() {
     const elImg = new Image()
@@ -23,10 +25,21 @@ function renderMeme() {
             gCtx.fillStyle = line.color.fill
             gCtx.strokeStyle = line.color.stroke
 
-            if (getSelectedLineIdx() === idx && gIsMarkShown) markLine(line)
+            if ( line.isRotated) {
+                gCtx.save()
+                gCtx.translate(line.x,line.y+5)
+                gCtx.rotate(line.angle)
+                gCtx.textAlign = 'left'
+                gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
+                gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+                if (getSelectedLineIdx() === idx && gIsMarkShown) markLine(line)
+                gCtx.restore()
 
-            gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
-            gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+            } else {
+                if (getSelectedLineIdx() === idx && gIsMarkShown) markLine(line)
+                gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
+                gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+            }
         })
     }
 }
@@ -55,9 +68,14 @@ function onDown(ev) {
     let lineIdx = findLine(ev, gIsTouch)
 
     if (isOnResizeMarker(offsetX, offsetY)) {
-        console.log('on target')
         gIsTextResizing = true
         lineIdx = gResizeMarkerLocation.lineIdx
+    }
+
+    if (isOnRotateMarker(offsetX, offsetY)) {
+        gIsTextRotating = true
+        lineIdx = gRotateMarkerLocation.lineIdx
+        getSelectedLine().isRotated = true
     }
 
     if (lineIdx === -1 && !gIsTextResizing) {
@@ -80,6 +98,7 @@ function onDown(ev) {
 function onUp(ev) {
     ev.preventDefault()
     gIsTextResizing = false
+    gIsTextRotating = false
     gIsdown = false
     gIsTouch = false
 }
@@ -105,6 +124,15 @@ function onMove(ev) {
         if (dx < 0 && dy < 0) {
             changeFontSize(-1)
         }
+    } else if (gIsTextRotating) {
+       
+        if ( dx< 0 &&  dy < 0) {
+            getSelectedLine().angle +=  -Math.PI * 0.005
+
+        } else if ( dx < 0 && dy > 0) {
+            getSelectedLine().angle += Math.PI * 0.005
+        }
+
     } else {
         updateLinePosX(dx)
         updateLinePosY(dy)
@@ -141,12 +169,29 @@ function markLine(line) {
         lineIdx: getSelectedLineIdx()
     }
 
+    gCtx.beginPath()
+    gCtx.fillStyle = 'blue'
+    gCtx.arc(line.pos.x - 5 + width, line.pos.y - height * 0.85 + height / 2, 10, Math.PI / 2, Math.PI * 1.5, true)
+    gCtx.stroke()
+    gCtx.fill()
+    gRotateMarkerLocation = {
+        x: line.pos.x - 5 + width,
+        y: line.pos.y - height * 0.85 + height / 2,
+        lineIdx: getSelectedLineIdx()
+    }
+
     gCtx.restore()
 }
 
 function isOnResizeMarker(x, y) {
     return (x >= gResizeMarkerLocation.x - 8 && x <= gResizeMarkerLocation.x + 8 &&
         y >= gResizeMarkerLocation.y - 8 && y <= gResizeMarkerLocation.y + 8)
+}
+
+function isOnRotateMarker(x, y) {
+    return (x >= gRotateMarkerLocation.x && x <= gRotateMarkerLocation.x + 10 &&
+        y >= gRotateMarkerLocation.y - 8 && y <= gRotateMarkerLocation.y + 8)
+
 }
 
 function onLineAdd() {

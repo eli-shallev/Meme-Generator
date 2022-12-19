@@ -179,6 +179,8 @@ function _createLine(lineTxt = '') {
         align: 'left',
         font,
         color: { stroke, fill },
-        pos: { x: 10, y: posY }
+        pos: { x: 10, y: posY },
+        isRotated: false,
+        angle: 0,
     }
 }
