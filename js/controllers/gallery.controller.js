@@ -99,7 +99,7 @@ function onRandomMeme() {
             txt += " "
         }
         var isLineWidth = false
-        while (!isLineWidth) {
+       // while (!isLineWidth) {
             var newLine = {
                 txt: txt,
                 size: getRandomIntInclusive(30, 50),
@@ -111,7 +111,7 @@ function onRandomMeme() {
                 angle: 0,
             }
             isLineWidth = checkLineSize(newLine)
-        }
+       // }
         rndLines.push(newLine)
     }
 
