@@ -20,6 +20,8 @@ function onGoToGallery() {
     elEditor.classList.add('hidden')
     const elMemes = document.querySelector('.memes-container')
     elMemes.classList.add('hidden')
+    if (document.body.classList.contains('menu-open')) onToggleMenu()
+
 }
 
 function onMore() {
@@ -29,7 +31,7 @@ function onMore() {
     document.querySelector('.btn-more').classList.add('hidden')
 }
 
-function Onless() {
+function onLess() {
     const elPool = document.querySelector('.word-pool')
     elPool.style.overflow = 'hidden'
     elPool.style.height = '60px'
@@ -90,21 +92,24 @@ function onRandomMeme() {
                 break;
         }
         const posY = i === 0 ? 60 : gElCanvas.height - 20
-        const numOfWords = getRandomIntInclusive(1, 6)
+        const numOfWords = getRandomIntInclusive(2, 4)
         let txt = ''
         for (var j = 0; j < numOfWords; j++) {
             txt += getRndStrings()[getRandomIntInclusive(0, 14)]
             txt += " "
         }
-        const newLine = {
-            txt: txt,
-            size: getRandomIntInclusive(20, 70),
-            align: align,
-            font: 'Impact',
-            color: { stroke: randomRgba(), fill: randomRgba() },
-            pos: { x: 10, y: posY }
+        var isLineWidth = false
+        while (!isLineWidth) {
+            var newLine = {
+                txt: txt,
+                size: getRandomIntInclusive(30, 50),
+                align: align,
+                font: 'Impact',
+                color: { stroke: randomRgba(), fill: randomRgba() },
+                pos: { x: 10, y: posY }
+            }
+            isLineWidth = checkLineSize(newLine)
         }
-
         rndLines.push(newLine)
     }
 
@@ -121,17 +126,6 @@ function onRandomMeme() {
     elEditor.classList.remove('hidden')
 
     resizeCanvas()
-}
-
-function randomRgba() {
-    var s = 255;
-    return 'rgba(' + Math.round(Math.random() * s) + ',' + Math.round(Math.random() * s) + ',' + Math.round(Math.random() * s) + ')';
-}
-
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
 }
 
 function onImageInput(img) {

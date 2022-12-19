@@ -11,6 +11,23 @@
     width: 200px;
 }
 
+.about-msg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 2em;
+    width: 350px;
+    translate: -50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    max-height: 0;
+    transition: all 0.6s;
+}
+
+.about-msg.shown{
+    max-height: 500px;
+}
+
 @media (min-width: 760px) {
     .main-header {
         border-radius: 2em;

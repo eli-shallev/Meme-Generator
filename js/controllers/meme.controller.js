@@ -68,6 +68,9 @@ function onDown(ev) {
 
     gIsMarkShown = true
     setSelectedLineIdx(lineIdx)
+    document.querySelector('.txt-input').value = !getLines().length ? '' : getSelectedLine().txt
+    let font = document.querySelector('.font-family-input').value
+    document.querySelector('.font-family-input').value = !getLines().length ? font : getSelectedLine().font
     gIsdown = true
     renderMeme()
     gStartPos.x = offsetX

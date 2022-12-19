@@ -186,14 +186,14 @@
     right: 5px;
 }
 
-.advenced-btns {
+.advanced-btns {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
 
-.advenced-btns>* {
+.advanced-btns>*:not(div) {
     text-decoration: none;
     color: white;
     flex-basis: 33%;
@@ -202,6 +202,22 @@
     font-size: 1.2em;
     height: 100%;
     padding-top: 10px;
+}
+
+.save-msg{
+    position: absolute;
+    top: 120px;
+    left: 0;
+    font-size: 30px;
+    color: white;
+    background-image: linear-gradient(to right, #0e9ab3, #2fba74);
+    padding: 0 10px;
+    transform: translate(-100%);
+}
+
+.save-msg.shown{
+    transition: all 0.8s;
+    transform: translate(0);
 }
 
 .btn-share {
@@ -267,7 +283,7 @@
         height: 50px;
     }
 
-    .advenced-btns>* {
+    .advanced-btns>*:not(div) {
         height: 50%;
         padding-top: 8px;
     }
@@ -295,7 +311,7 @@
         max-width: 185px;
     }
 
-    .advenced-btns>* {
+    .advanced-btns>*:not(div){
         height: 60%;
         padding-top: 10px;
     }
@@ -320,7 +336,7 @@
         max-width: 225px;
     }
 
-    .advenced-btns>* {
+    .advanced-btns>*:not(div){
         height: 60%;
         padding-top: 12px;
     }

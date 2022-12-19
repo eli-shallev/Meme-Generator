@@ -72,3 +72,11 @@ function loadImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0])
 }
 
+function checkLineSize(line) {
+    gCtx.save()
+    gCtx.font = `${line.size}px ${line.font}`
+    const lineWidth = gCtx.measureText(line.txt).width
+    gCtx.restore()
+    return lineWidth <= gElCanvas.width
+}
+

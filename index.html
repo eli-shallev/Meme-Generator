@@ -21,15 +21,16 @@
             <ul class="clean-list flex align-center">
                 <li><a href="#" onclick="onGoToGallery()">Gallery</a></li>
                 <li><a href="#" onclick="onGoToMemes()">Memes</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#" onclick="onAbout()">About</a></li>
             </ul>
         </nav>
 
         <button class="menu-toggle-btn" onclick="onToggleMenu()"><i class="fa-solid fa-bars"></i></button>
+        <img class="about-msg" src="img/about.jpg" alt="">
 
     </header>
 
-    <div class="main-screen" onclick="onToggleMenu()"></div>
+    <div class="main-screen" opacity="0" onclick="onToggleMenu()"></div>
 
     <section class="main-gallery">
 
@@ -66,7 +67,7 @@
                     <span id="success" onclick="onWordClick(this.innerText)">success</span>
                     <span id="classics" onclick="onWordClick(this.innerText)">classics</span>
                     <span id="german" onclick="onWordClick(this.innerText)">german</span>
-                    <button class="btn-less" onclick="Onless()">less</button>
+                    <button class="btn-less" onclick="onLess()">less</button>
                 </div>
                 <button class="btn-more" onclick="onMore()">More</button>
             </section>
@@ -145,19 +146,12 @@
             <section class="emojis">
                 <button class="btn-emojis-left" onclick="onEmojiScroll(-1)"><i
                         class="fa-solid fa-caret-left"></i></button>
-                <div class="emoji-container">
-                    <span onclick="onEmojiAdd(this.innerText)">💖</span> <span
-                        onclick="onEmojiAdd(this.innerText)">😂</span>
-                    <span onclick="onEmojiAdd(this.innerText)">🌭</span> <span
-                        onclick="onEmojiAdd(this.innerText)">💎</span>
-                    <span onclick="onEmojiAdd(this.innerText)">🎅</span><span
-                        onclick="onEmojiAdd(this.innerText)">⛲</span>
-                </div>
+                <div class="emoji-container"></div>
                 <button class="btn-emojis-right" onclick="onEmojiScroll(1)"><i
                         class="fa-solid fa-caret-right"></i></button>
             </section>
 
-            <section class="advenced-btns">
+            <section class="advanced-btns">
 
                 <label class="btn-share" onclick="onShare()">
                     <i class="fa-solid fa-share-nodes"></i> Share
@@ -171,15 +165,16 @@
                         class="fa-solid fa-download"></i> Download</a>
 
                 <a href="#" class="btn-save" onclick="onSave()"><i class="fa-solid fa-floppy-disk"></i> Save</a>
-
+                <div class="save-msg">Meme saved</div>
             </section>
 
         </section>
 
     </section>
 
-    <section class="memes-container hidden"></section>
+    <section class="memes-container hidden" hidden="true"></section>
 
+    <script src="js/services/util.services.js"></script>
     <script src="js/services/upload.service.js"></script>
     <script src="js/services/storage.services.js"></script>
     <script src="js/main.js"></script>

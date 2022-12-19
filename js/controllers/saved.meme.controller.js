@@ -20,9 +20,15 @@ function onGoToMemes() {
     elEditor.classList.add('hidden')
     const elMemes = document.querySelector('.memes-container')
     elMemes.classList.remove('hidden')
+    if(document.body.classList.contains('menu-open')) onToggleMenu()
 }
 
 function onSave() {
+    const elMsg = document.querySelector('.save-msg')
+    elMsg.classList.add('shown')
+    setTimeout(() => {
+        elMsg.classList.remove('shown')
+    }, 2000);
     addToSavedMemes()
 }
 
